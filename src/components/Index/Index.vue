@@ -1,5 +1,6 @@
 <template>
   <div class="">
+    <h3>录入ccpc锦标赛选手信息</h3>
   </div>
 </template>
 
