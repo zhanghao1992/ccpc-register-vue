@@ -51,7 +51,9 @@ export default {
 @r: 20rem;
 .title {
   text-align: center;
+  font-size: 2rem;
   line-height: 12rem;
+  color: #1AAD19;
 }
 .chosoe-box {
   margin-top: 3rem;
