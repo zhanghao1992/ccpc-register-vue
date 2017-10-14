@@ -10,7 +10,7 @@
         <selector title="" :options="list" v-model="value2"></selector>
       </group>
 
-      <x-button class="btn" type="primary">确定</x-button>
+      <x-button class="btn" type="primary">搜索</x-button>
     </div>
   </view-box>
 </template>
