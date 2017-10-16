@@ -26,6 +26,9 @@ export default {
     Group,
     XButton
   },
+  created () {
+    this._getMatchApplySKU()
+  },
   methods: {
     onChange (val) {
       console.log('val change', val)
@@ -35,6 +38,15 @@ export default {
     },
     onHide (type) {
       console.log('on hide', type)
+    },
+    _getMatchApplySKU () {
+      this.$http('/api/get_skider_list', {}).then(json => {
+        if (json.code === 0) {
+          console.log('http success')
+        }
+      }).catch(err => {
+        console.log(err)
+      })
     }
   },
   data () {
