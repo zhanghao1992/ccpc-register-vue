@@ -3,11 +3,11 @@
     <h1 class="title">查询参赛选手位置</h1>
     <div class="chosoe-box">
       <group title="参赛时间">
-        <selector title="" :options="list" v-model="value1"></selector>
+        <selector title="" :options="dayList" v-model="dayValue"></selector>
       </group>
 
       <group title="参赛地点">
-        <selector title="" :options="list" v-model="value2"></selector>
+        <selector title="" :options="addList" v-model="addValue"></selector>
       </group>
 
       <x-button class="btn" type="primary">搜索</x-button>
@@ -40,9 +40,32 @@ export default {
       console.log('on hide', type)
     },
     _getMatchApplySKU () {
-      this.$http('/api/get_skider_list', {}).then(json => {
-        if (json.code === 0) {
-          console.log('http success')
+//      this.$http('http://172.21.122.192:7073/admin/getCityList', {}).then(json => {
+//        if (json.data.code === 0) {
+//          this.list = json.data.response.dayList
+//        }
+//      }).catch(err => {
+//        console.log(err)
+//      })
+      this.$http('/api/common/getCityList', {
+        params: {
+          t: new Date().getTime(),
+          cityCode: 101
+        }
+      }).then(json => {
+        if (json.data.code === 0) {
+          this.dayList = json.data.response.dayList.map((item, index) => {
+            return {
+              key: index,
+              value: item
+            }
+          })
+          this.addList = json.data.response.placeList.map((item, index) => {
+            return {
+              key: index,
+              value: item
+            }
+          })
         }
       }).catch(err => {
         console.log(err)
@@ -51,9 +74,10 @@ export default {
   },
   data () {
     return {
-      value1: 0,
-      value2: 0,
-      list: [{key: 'gd', value: '广东'}, {key: 'gx', value: '广西'}]
+      dayValue: 0,
+      addValue: 0,
+      dayList: [],
+      addList: []
     }
   }
 }
