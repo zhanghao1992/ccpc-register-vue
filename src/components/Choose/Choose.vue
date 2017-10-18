@@ -40,13 +40,6 @@ export default {
       console.log('on hide', type)
     },
     _getMatchApplySKU () {
-//      this.$http('http://172.21.122.192:7073/admin/getCityList', {}).then(json => {
-//        if (json.data.code === 0) {
-//          this.list = json.data.response.dayList
-//        }
-//      }).catch(err => {
-//        console.log(err)
-//      })
       this.$http('/api/common/getCityList', {
         params: {
           t: new Date().getTime(),
